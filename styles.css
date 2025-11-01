@@ -72,6 +72,39 @@ body {
     font-size: 16px;
 }
 
+@media (max-width: 768px) {
+    .discount-banner-wrapper {
+        right: 10px;
+        margin-top: 70px;
+    }
+    
+    .discount-image {
+        max-width: 150px;
+    }
+    
+    .discount-banner-close {
+        width: 20px;
+        height: 20px;
+        top: 4px;
+        right: 4px;
+    }
+    
+    .discount-banner-close .material-icons {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .discount-banner-wrapper {
+        right: 5px;
+        margin-top: 60px;
+    }
+    
+    .discount-image {
+        max-width: 120px;
+    }
+}
+
 .container-contact {
     max-width: 1200px;
     margin: 0 auto;
