@@ -24,6 +24,54 @@ body {
     padding: 0 20px;
 }
 
+/* Discount Banner */
+.discount-banner-wrapper {
+    position: fixed;
+    top: 0;
+    right: 120px;
+    margin-top: 92.4px;
+    z-index: 2000;
+    display: none;
+}
+
+.discount-banner-wrapper.hidden {
+    display: none;
+}
+
+.discount-image {
+    max-width: 300px;
+    width: auto;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.discount-banner-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s;
+    z-index: 2001;
+}
+
+.discount-banner-close:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.discount-banner-close .material-icons {
+    font-size: 16px;
+}
+
 .container-contact {
     max-width: 1200px;
     margin: 0 auto;
