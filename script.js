@@ -95,3 +95,81 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Dynamic pricing calculator for preturi page
+document.addEventListener('DOMContentLoaded', function() {
+    const originalPriceElement = document.getElementById('originalPrice');
+    const discountedPriceElement = document.getElementById('discountedPrice');
+    
+    if (originalPriceElement && discountedPriceElement) {
+        const BASE_PRICE = 2600; // Base price in RON (includes gear selection)
+        const DISCOUNT_RATE = 0.10; // 10% discount
+        const BASE_DISCOUNT = BASE_PRICE * DISCOUNT_RATE; // 260 RON discount
+        const EXAM_CAR_PRICE = 250; // Additional cost for exam car (not discounted)
+        const MEDICAL_FILE_PRICE = 250; // Additional cost for medical file (not discounted)
+        
+        const examCarCheckbox = document.getElementById('examCar');
+        const medicalFileCheckbox = document.getElementById('medicalFile');
+        const examCarItem = document.getElementById('examCarItem');
+        const medicalFileItem = document.getElementById('medicalFileItem');
+        
+        function updateFeaturesVisibility() {
+            // Update exam car item visibility
+            if (examCarItem) {
+                if (examCarCheckbox && examCarCheckbox.checked) {
+                    examCarItem.classList.remove('inactive');
+                } else {
+                    examCarItem.classList.add('inactive');
+                }
+            }
+            
+            // Update medical file item visibility
+            if (medicalFileItem) {
+                if (medicalFileCheckbox && medicalFileCheckbox.checked) {
+                    medicalFileItem.classList.remove('inactive');
+                } else {
+                    medicalFileItem.classList.add('inactive');
+                }
+            }
+        }
+        
+        function updatePrice() {
+            let addOnsTotal = 0;
+            
+            // Calculate add-ons total
+            if (examCarCheckbox && examCarCheckbox.checked) {
+                addOnsTotal += EXAM_CAR_PRICE;
+            }
+            
+            if (medicalFileCheckbox && medicalFileCheckbox.checked) {
+                addOnsTotal += MEDICAL_FILE_PRICE;
+            }
+            
+            // Original price = base + add-ons (no discount on add-ons)
+            const originalPrice = BASE_PRICE + addOnsTotal;
+            
+            // Discounted price = (base - discount) + add-ons
+            const discountedPrice = (BASE_PRICE - BASE_DISCOUNT) + addOnsTotal;
+            
+            // Update displayed prices
+            originalPriceElement.textContent = originalPrice.toLocaleString('ro-RO') + ' RON';
+            discountedPriceElement.textContent = discountedPrice.toLocaleString('ro-RO') + ' RON';
+            
+            // Update features visibility
+            updateFeaturesVisibility();
+        }
+        
+        // Listen for changes on exam car checkbox
+        if (examCarCheckbox) {
+            examCarCheckbox.addEventListener('change', updatePrice);
+        }
+        
+        // Listen for changes on medical file checkbox
+        if (medicalFileCheckbox) {
+            medicalFileCheckbox.addEventListener('change', updatePrice);
+        }
+        
+        // Initial price calculation and features visibility
+        updatePrice();
+    }
+});
+

@@ -115,32 +115,54 @@
             
             <div class="pricing-cards">
                 <div class="pricing-card">
-                    <h3 class="card-title">Școala de șoferi categoria B pe cutie automată</h3>
-                    <div class="price">3.000 RON</div>
-                    <div class="card-content">
-                        <p class="card-intro"><strong>În acest preț ai incluse toate cheltuielile necesare:</strong></p>
-                        <ul class="features-list">
-                            <li><span class="material-icons">check_circle</span> 24 ore de Legislație Rutieră + ore NELIMITATE fără cost suplimentar, până te simți pregătit pentru examen!</li>
-                            <li><span class="material-icons">check_circle</span> 30 ore de pregătire practică (împărțite în 15 ședințe de conducere a câte o oră și jumătate, fără pauză);</li>
-                            <li><span class="material-icons">check_circle</span> 2 ore de prim ajutor;</li>
-                            <li><span class="material-icons">check_circle</span> Cursuri de conducere defensivă!</li>
-                        </ul>
-                        <p class="card-note"><strong>IMPORTANT:</strong> Poți plăti școala în RATE! (două rate egale)</p>
+                    <h3 class="card-title">Școala de șoferi categoria B</h3>
+                    <div class="price-container" id="dynamicPrice">
+                        <div class="price-original" id="originalPrice">2.600 RON</div>
+                        <div class="price-discounted" id="discountedPrice">2.340 RON</div>
                     </div>
-                    <a href="tel:0775643720" class="btn-primary">0775 643 720</a>
-                </div>
-                <div class="pricing-card">
-                    <h3 class="card-title">Școala de șoferi categoria B pe cutie manuală</h3>
-                    <div class="price">3.000 RON</div>
+                    <div style="margin-bottom: 1rem;">⚠️ Pana la 28 februarie 2026, beneficiezi de 10% reducere din pretul de baza!</div>
+                    
+                    <!-- Selection Options -->
+                    <div class="pricing-options">
+                        <div class="option-group">
+                            <label class="option-label">Tip cutie:</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="gearType" value="automatic" checked>
+                                    <span>Automată</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gearType" value="manual">
+                                    <span>Manuală</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="examCar">
+                                <span>Vreau masina de examen inclusa in pret</span>
+                            </label>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="medicalFile">
+                                <span>Vreau dosarul medical inclus in pret</span>
+                            </label>
+                        </div>
+                    </div>
+                    
                     <div class="card-content">
                         <p class="card-intro"><strong>În acest preț ai incluse toate cheltuielile necesare:</strong></p>
                         <ul class="features-list">
-                            <li><span class="material-icons">check_circle</span> 24 ore de Legislație Rutieră + ore NELIMITATE fără cost suplimentar, până te simți pregătit pentru examen!</li>
-                            <li><span class="material-icons">check_circle</span> 30 ore de pregătire practică (împărțite în 15 ședințe de conducere a câte o oră și jumătate, fără pauză);</li>
-                            <li><span class="material-icons">check_circle</span> 2 ore de prim ajutor;</li>
-                            <li><span class="material-icons">check_circle</span> Cursuri de conducere defensivă!</li>
+                            <li><span class="material-icons">check_circle</span> 24 ore de Legislație Rutieră ca să te simți pregătit pentru examen!</li>
+                            <li><span class="material-icons">check_circle</span> 30 ore de pregătire practică pe traseele de examen;</li>
+                            <li><span class="material-icons">check_circle</span> Simulare de examen teoretic si practic!</li>
+                            <li id="medicalFileItem"><span class="material-icons">check_circle</span> Dosarul medical;</li>
+                            <li id="examCarItem"><span class="material-icons">check_circle</span> Mașina la examen!</li>
                         </ul>
-                        <p class="card-note"><strong>IMPORTANT:</strong> Poți plăti școala în RATE! (două rate egale)</p>
+                        <p class="card-note"><strong>IMPORTANT:</strong> Poți plăti școala în 3 RATE!</p>
                     </div>
                     <a href="tel:0775643720" class="btn-primary">0775 643 720</a>
                 </div>
