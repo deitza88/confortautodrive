@@ -28,8 +28,8 @@ body {
 .discount-banner-wrapper {
     position: fixed;
     top: 0;
-    right: 120px;
-    margin-top: 92.4px;
+    right: 140px;
+    margin-top: 70px;
     z-index: 2000;
     display: none;
 }
@@ -161,6 +161,20 @@ body {
 
 .banner-item .material-icons {
     font-size: 18px;
+}
+
+.banner-link {
+    color: var(--white-color);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.banner-link:hover {
+    opacity: 0.8;
+}
+
+.banner-link:visited {
+    color: var(--white-color);
 }
 
 /* Navbar */
