@@ -102,26 +102,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (originalPriceElement && discountedPriceElement) {
         const BASE_PRICE = 2600; // Base price in RON (includes gear selection)
-        const DISCOUNT_RATE = 0.10; // 10% discount
-        const BASE_DISCOUNT = BASE_PRICE * DISCOUNT_RATE; // 260 RON discount
-        const EXAM_CAR_PRICE = 250; // Additional cost for exam car (not discounted)
+        const EXAM_CAR_PRICE = 250; // Exam car price (always included)
+        const BASE_DISCOUNT = 260; // 260 RON discount (fixed)
         const MEDICAL_FILE_PRICE = 250; // Additional cost for medical file (not discounted)
         
-        const examCarCheckbox = document.getElementById('examCar');
         const medicalFileCheckbox = document.getElementById('medicalFile');
         const examCarItem = document.getElementById('examCarItem');
         const medicalFileItem = document.getElementById('medicalFileItem');
         
+        // Exam car is always included, so it should always be visible
+        if (examCarItem) {
+            examCarItem.classList.remove('inactive');
+        }
+        
         function updateFeaturesVisibility() {
-            // Update exam car item visibility
-            if (examCarItem) {
-                if (examCarCheckbox && examCarCheckbox.checked) {
-                    examCarItem.classList.remove('inactive');
-                } else {
-                    examCarItem.classList.add('inactive');
-                }
-            }
-            
             // Update medical file item visibility
             if (medicalFileItem) {
                 if (medicalFileCheckbox && medicalFileCheckbox.checked) {
@@ -133,21 +127,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         function updatePrice() {
-            let addOnsTotal = 0;
+            let addOnsTotal = EXAM_CAR_PRICE; // Exam car is always included
             
-            // Calculate add-ons total
-            if (examCarCheckbox && examCarCheckbox.checked) {
-                addOnsTotal += EXAM_CAR_PRICE;
-            }
-            
+            // Add medical file if checked
             if (medicalFileCheckbox && medicalFileCheckbox.checked) {
                 addOnsTotal += MEDICAL_FILE_PRICE;
             }
             
-            // Original price = base + add-ons (no discount on add-ons)
+            // Original price = base + exam car (always) + add-ons
             const originalPrice = BASE_PRICE + addOnsTotal;
             
-            // Discounted price = (base - discount) + add-ons
+            // Discounted price = (base - discount) + exam car (always) + add-ons
             const discountedPrice = (BASE_PRICE - BASE_DISCOUNT) + addOnsTotal;
             
             // Update displayed prices
@@ -156,11 +146,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Update features visibility
             updateFeaturesVisibility();
-        }
-        
-        // Listen for changes on exam car checkbox
-        if (examCarCheckbox) {
-            examCarCheckbox.addEventListener('change', updatePrice);
         }
         
         // Listen for changes on medical file checkbox
