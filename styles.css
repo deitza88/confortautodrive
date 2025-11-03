@@ -806,6 +806,42 @@ body {
 .footer p {
     font-size: 16px;
     opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+.footer-anpc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.footer-anpc a {
+    display: inline-block;
+    transition: opacity 0.3s ease;
+}
+
+.footer-anpc a:hover {
+    opacity: 0.8;
+}
+
+.anpc-image {
+    height: 60px;
+    width: auto;
+    max-width: 200px;
+}
+
+@media (max-width: 768px) {
+    .anpc-image {
+        height: 50px;
+        max-width: 150px;
+    }
+    
+    .footer-anpc {
+        gap: 15px;
+    }
 }
 
 /* Floating Contact Widgets */
