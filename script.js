@@ -55,42 +55,21 @@ if (closeWidgetsBtn && floatingWidgets) {
     });
 }
 
-// Discount banner functionality (per page, per session)
+// Discount banner functionality
 document.addEventListener('DOMContentLoaded', function() {
     const discountBanner = document.getElementById('discountBanner');
     const closeDiscountBanner = document.getElementById('closeDiscountBanner');
 
     if (discountBanner && closeDiscountBanner) {
-        // Get current page identifier (e.g., 'home', 'preturi', 'despre-noi', 'contact')
-        const currentPath = window.location.pathname;
-        let pageKey = 'home';
-        
-        if (currentPath.includes('preturi')) {
-            pageKey = 'preturi';
-        } else if (currentPath.includes('despre-noi')) {
-            pageKey = 'despre-noi';
-        } else if (currentPath.includes('contact')) {
-            pageKey = 'contact';
-        }
-        
-        const sessionKey = `discountBannerClosed_${pageKey}`;
-        
-        // Check if banner was closed for this page in this session
-        const bannerClosed = sessionStorage.getItem(sessionKey);
-        
-        if (bannerClosed === 'true') {
-            discountBanner.classList.add('hidden');
-        } else {
-            // Show banner after a short delay for better UX
-            setTimeout(function() {
-                discountBanner.style.display = 'block';
-            }, 500);
-        }
+        // Show banner after a short delay for better UX
+        setTimeout(function() {
+            discountBanner.style.display = 'block';
+        }, 500);
         
         // Close button handler
         closeDiscountBanner.addEventListener('click', function() {
+            discountBanner.style.display = 'none';
             discountBanner.classList.add('hidden');
-            sessionStorage.setItem(sessionKey, 'true');
         });
     }
 });
