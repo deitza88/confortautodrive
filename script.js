@@ -58,13 +58,10 @@ if (closeWidgetsBtn && floatingWidgets) {
 // Dynamic pricing calculator for preturi page
 document.addEventListener('DOMContentLoaded', function() {
     const originalPriceElement = document.getElementById('originalPrice');
-    const discountedPriceElement = document.getElementById('discountedPrice');
     
-    if (originalPriceElement && discountedPriceElement) {
-        const BASE_PRICE = 2600; // Base price in RON (includes gear selection)
-        const EXAM_CAR_PRICE = 250; // Exam car price (always included)
-        const BASE_DISCOUNT = 260; // 260 RON discount (fixed)
-        const MEDICAL_FILE_PRICE = 250; // Additional cost for medical file (not discounted)
+    if (originalPriceElement) {
+        const BASE_PRICE = 2850; // Base price in RON (includes gear selection and exam car)
+        const MEDICAL_FILE_PRICE = 250; // Additional cost for medical file
         
         const medicalFileCheckbox = document.getElementById('medicalFile');
         const examCarItem = document.getElementById('examCarItem');
@@ -87,22 +84,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         function updatePrice() {
-            let addOnsTotal = EXAM_CAR_PRICE; // Exam car is always included
+            let totalPrice = BASE_PRICE;
             
             // Add medical file if checked
             if (medicalFileCheckbox && medicalFileCheckbox.checked) {
-                addOnsTotal += MEDICAL_FILE_PRICE;
+                totalPrice += MEDICAL_FILE_PRICE;
             }
             
-            // Original price = base + exam car (always) + add-ons
-            const originalPrice = BASE_PRICE + addOnsTotal;
-            
-            // Discounted price = (base - discount) + exam car (always) + add-ons
-            const discountedPrice = (BASE_PRICE - BASE_DISCOUNT) + addOnsTotal;
-            
-            // Update displayed prices
-            originalPriceElement.textContent = originalPrice.toLocaleString('ro-RO') + ' RON';
-            discountedPriceElement.textContent = discountedPrice.toLocaleString('ro-RO') + ' RON';
+            // Update displayed price
+            originalPriceElement.textContent = totalPrice.toLocaleString('ro-RO') + ' RON';
             
             // Update features visibility
             updateFeaturesVisibility();
