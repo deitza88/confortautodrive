@@ -55,25 +55,6 @@ if (closeWidgetsBtn && floatingWidgets) {
     });
 }
 
-// Discount banner functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const discountBanner = document.getElementById('discountBanner');
-    const closeDiscountBanner = document.getElementById('closeDiscountBanner');
-
-    if (discountBanner && closeDiscountBanner) {
-        // Show banner after a short delay for better UX
-        setTimeout(function() {
-            discountBanner.style.display = 'block';
-        }, 500);
-        
-        // Close button handler
-        closeDiscountBanner.addEventListener('click', function() {
-            discountBanner.style.display = 'none';
-            discountBanner.classList.add('hidden');
-        });
-    }
-});
-
 // Dynamic pricing calculator for preturi page
 document.addEventListener('DOMContentLoaded', function() {
     const originalPriceElement = document.getElementById('originalPrice');
