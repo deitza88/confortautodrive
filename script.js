@@ -17,10 +17,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
 });
 
-// Hide top banner on scroll
+// Hide top banner on scroll (promo ticker on home stays visible)
 let lastScrollTop = 0;
 const topBanner = document.getElementById('topBanner');
 const navbar = document.querySelector('.navbar');
+const stickyNewsTicker = document.querySelector('.sticky-news-ticker');
+
+function updateTopHeaderStackHeights() {
+    if (!topBanner) return;
+    document.documentElement.style.setProperty('--top-banner-h', `${topBanner.offsetHeight}px`);
+    if (stickyNewsTicker) {
+        document.documentElement.style.setProperty('--sticky-ticker-h', `${stickyNewsTicker.offsetHeight}px`);
+    }
+}
+
+updateTopHeaderStackHeights();
+window.addEventListener('resize', updateTopHeaderStackHeights);
+if (typeof ResizeObserver !== 'undefined' && topBanner) {
+    const ro = new ResizeObserver(updateTopHeaderStackHeights);
+    ro.observe(topBanner);
+    if (stickyNewsTicker) ro.observe(stickyNewsTicker);
+}
 
 window.addEventListener('scroll', function() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;

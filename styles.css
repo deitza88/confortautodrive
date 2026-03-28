@@ -46,6 +46,10 @@ body {
     transform: translateY(-100%);
 }
 
+body.has-sticky-ticker .top-banner {
+    top: var(--sticky-ticker-h, 44px);
+}
+
 .banner-content {
     max-width: 1700px;
     margin: 0 auto;
@@ -656,6 +660,11 @@ body {
     background-color: var(--white-color);
 }
 
+/* Hash links (e.g. from home ticker) land with room below fixed header */
+section#contact {
+    scroll-margin-top: 6.5rem;
+}
+
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -818,6 +827,75 @@ body {
 
 .floating-widgets.hidden {
     display: none;
+    padding-bottom: 10px;
+}
+
+/* News ticker — fixed at very top, above address bar; never hides on scroll (all pages) */
+.sticky-news-ticker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+body.has-sticky-ticker .navbar {
+    margin-top: calc(var(--sticky-ticker-h, 44px) + var(--top-banner-h, 52px));
+    top: calc(var(--sticky-ticker-h, 44px) + var(--top-banner-h, 52px));
+}
+
+body.has-sticky-ticker .navbar.banner-hidden {
+    margin-top: var(--sticky-ticker-h, 44px);
+    top: var(--sticky-ticker-h, 44px);
+}
+
+.sticky-news-ticker-inner {
+    overflow: hidden;
+    background: linear-gradient(180deg, #7f1d1d 0%, #450a0a 100%);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    padding: 10px 0;
+}
+
+.sticky-news-ticker-track {
+    display: flex;
+    width: max-content;
+    animation: sticky-news-ticker-scroll 45s linear infinite;
+}
+
+.sticky-news-ticker-text {
+    flex-shrink: 0;
+    font-weight: 900;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+@keyframes sticky-news-ticker-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sticky-news-ticker-track {
+        animation: none;
+        justify-content: center;
+        width: 100% !important;
+        margin: 0 auto;
+    }
+
+    .sticky-news-ticker-text[aria-hidden="true"] {
+        display: none;
+    }
 }
 
 /* Responsive Design */
@@ -938,6 +1016,11 @@ body {
 
     .top-banner {
         position: relative;
+    }
+
+    /* With ticker: address bar stays fixed; relative banner would double-count height vs navbar margin */
+    body.has-sticky-ticker .top-banner {
+        position: fixed;
     }
 }
 
